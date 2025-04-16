@@ -88,6 +88,9 @@ class SpatialSVG {
             r: 5,
         };
         if (fileType === "geojson") {
+            if (typeof data === "string") {
+                data = JSON.parse(data);
+            }
             if (data.type === "FeatureCollection") {
                 this.geojson = data;
             }
@@ -126,7 +129,7 @@ class SpatialSVG {
         if (["kml", "gpx", "geojson"].indexOf(this.fileType) == -1) {
             throw new Error("Invalid file type");
         }
-        if (["global", "geotype", "property", "filter"].indexOf(this.styleType) == -1) {
+        if (["general", "geotype", "property", "filter"].indexOf(this.styleType) == -1) {
             throw new Error("Invalid style type");
         }
         if (this.geojson.features.length == 0) {
@@ -266,7 +269,7 @@ class SpatialSVG {
                 break;
             }
         }
-        if (this.styleType === "global") {
+        if (this.styleType === "general") {
             for (var key in sp) {
                 if (styleObj[key]) {
                     s.push(`${styleObj[key]}="${sp[key]}"`);

@@ -1,8 +1,8 @@
 {
-  "name": "spatial-svg",
+  "name": "spatial-to-svg",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "directories": {
     "test": "test"
   },
