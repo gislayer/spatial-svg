@@ -1,6 +1,12 @@
 # Spatial-To-SVG
 This library converts your open-source GeoJSON, KML, and GPX files into SVG format. With this module, you can define styling rules to create more visually appealing SVGs. Additionally, the resulting SVG files can be used across various platforms.
 
+## Install
+
+```bash
+npm install spatial-to-svg
+```
+
 ## Demo Website
 This module is developed for GISLayer software. After logging into the system, you can find it under the **Data** menu.  
 To use it, please make sure to **add your geometric data to the map**, then click the **SVG Export** button to proceed.
@@ -11,7 +17,7 @@ Training Video :  [click here](https://editor.gislayer.com)
 DEMO PAGE :  [click here](https://editor.gislayer.com)
 Note : The software offers **30 minutes of free usage**.
 
-## Convert GeoJSON file to SVG file
+## Basic Usage : Convert GeoJSON file to SVG file
 
     import * as  fs  from  "fs";
 	const GeoJSONString = fs.readFileSync("...path/data.geojson", "utf8");
@@ -33,12 +39,6 @@ Note : The software offers **30 minutes of free usage**.
 	const  svg = svgConverter.getSVG();
 	fs.writeFileSync("...path/sample.svg", svg);
 	
-## Install
-
-```bash
-npm install spatial-to-svg
-```
-
 
 
 ## Convert KML File To SVG
