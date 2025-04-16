@@ -254,15 +254,14 @@ You can use these properties in any options
 #### If StyleType is '*property*'
 
   ```javascript
-    const geojsonData = {...features:[
-      {...,
+    const geojsonData = {features:[
+      {
       properties:{
         "color_stroke":"#00FF00",
         "line_width":3,
         "polygon_color":"#FF0000",
         "opacity":1
-      },geometry:...}
-      ....
+      }}
     ]};
     
     const svgConverter = new SpatialSVG({
