@@ -1,8 +1,48 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const bbox_1 = require("@turf/bbox");
+const togeojson = __importStar(require("togeojson"));
+const geojsonValidation = __importStar(require("geojson-validation"));
+const xmldom_1 = __importDefault(require("xmldom"));
 class SpatialSVG {
-    constructor({ geojson, styles, size, styleType, bgColor }) {
+    constructor({ data, fileType, styles, size, styleType, bgColor }) {
+        this.geojson = { type: "FeatureCollection", features: [] };
         this.lineStringStyleProps = {
             stroke: "stroke",
             strokeWidth: "stroke-width",
@@ -47,13 +87,25 @@ class SpatialSVG {
             "fill-opacity": 1,
             r: 5,
         };
-        if (geojson.type === "FeatureCollection") {
-            this.geojson = geojson;
+        if (fileType === "geojson") {
+            if (data.type === "FeatureCollection") {
+                this.geojson = data;
+            }
+            else {
+                this.geojson = { type: "FeatureCollection", features: [data] };
+            }
         }
-        else {
-            this.geojson = { type: "FeatureCollection", features: [geojson] };
+        else if (fileType === "kml") {
+            this.geojson = togeojson.kml(new xmldom_1.default.DOMParser().parseFromString(data, "text/xml"));
         }
-        this.styleType = styleType || "global";
+        else if (fileType === "gpx") {
+            this.geojson = togeojson.gpx(new xmldom_1.default.DOMParser().parseFromString(data, "text/xml"));
+        }
+        if (fileType == 'gpx' && (styleType == 'filter' || styleType == 'property')) {
+            throw new Error("GPX file type does not support filter or property style type");
+        }
+        this.styleType = styleType.toLocaleLowerCase();
+        this.fileType = fileType.toLocaleLowerCase();
         this.styles = styles;
         this.size = size || 1000;
         this.width = 0;
@@ -62,6 +114,24 @@ class SpatialSVG {
         this.minLat = 0;
         this.scale = 0;
         this.bgColor = bgColor || "none";
+        this.validations();
+    }
+    validations() {
+        if (this.fileType == 'gpx' && (this.styleType == 'filter' || this.styleType == 'property')) {
+            throw new Error("GPX file type does not support filter or property style type");
+        }
+        if (geojsonValidation.isFeatureCollection(this.geojson) == false) {
+            throw new Error("Invalid Spatial data");
+        }
+        if (["kml", "gpx", "geojson"].indexOf(this.fileType) == -1) {
+            throw new Error("Invalid file type");
+        }
+        if (["global", "geotype", "property", "filter"].indexOf(this.styleType) == -1) {
+            throw new Error("Invalid style type");
+        }
+        if (this.geojson.features.length == 0) {
+            throw new Error("Spatial data is empty");
+        }
     }
     getTopLeftCoordinate(bbox) {
         const lngs = [bbox[0], bbox[2]];

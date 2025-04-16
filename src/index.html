@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpatialSVG Kullanımı</title>
+</head>
+<body>
+    <div id="svg-container"></div>
+    <script src="../dist/index.min.js"></script>
+    <script>
+        const data = {
+            type: "FeatureCollection",
+            features: [
+                {
+                    type: "Feature",
+                    geometry: {
+                        type: "Polygon",
+                        coordinates: [[[29.01, 41.01], [29.03, 41.01], [29.03, 41.03], [29.01, 41.03], [29.01, 41.01]]]
+                    },
+                    properties: {}
+                },
+                {
+                    type: "Feature", 
+                    geometry: {
+                        type: "LineString",
+                        coordinates: [[29.02, 41.02], [29.04, 41.04]]
+                    },
+                    properties: {}
+                },
+                {
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: [29.025, 41.025]
+                    },
+                    properties: {}
+                }
+            ]
+        };
+        const options = {
+            data: data,
+            styles: {
+                stroke: "#000000",
+                strokeWidth: 1,
+                fill: "#000000",
+                fillOpacity: 0.5
+            },
+            size: 1000,
+            styleType: "global",
+            fileType: "geojson"
+        };
+        const spatialSVG = new SpatialSVG(options);
+        document.getElementById('svg-container').innerHTML = spatialSVG.getSVG();
+    </script>
+</body>
+</html>
