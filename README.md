@@ -254,107 +254,107 @@ You can use these properties in any options
 #### If StyleType is '*property*'
 
     ```javascript
-    const geojsonData = {...features:[
-	    {...,
-	    properties:{
-		    "color_stroke":"#00FF00",
-		    "line_width":3,
-		    "polygon_color":"#FF0000",
-		    "opacity":1
-	    },geometry:...}
-	    ....
-    ]};
-    
-    const svgConverter = new SpatialSVG({
-		fileType: "geojson",
-		data:geojsonData,
-		size: 1000,
-		styleType: "geotype",
-		styles: {
-			props:{
-				stroke:"color_stroke",
-				strokeWidth:"line_width",
-				fill:"polygon_color",
-				fillOpacity:"opacity",
-			}
-		}
-	});
+      const geojsonData = {...features:[
+        {...,
+        properties:{
+          "color_stroke":"#00FF00",
+          "line_width":3,
+          "polygon_color":"#FF0000",
+          "opacity":1
+        },geometry:...}
+        ....
+      ]};
+      
+      const svgConverter = new SpatialSVG({
+      fileType: "geojson",
+      data:geojsonData,
+      size: 1000,
+      styleType: "geotype",
+      styles: {
+        props:{
+          stroke:"color_stroke",
+          strokeWidth:"line_width",
+          fill:"polygon_color",
+          fillOpacity:"opacity",
+        }
+      }
+    });
 	```
 
 #### If StyleType is '*filter*'
 If you are using filter-based styling, remember that `filters` should be defined as an array inside the style object. For example, let's say you have a GeoJSON containing polygon buildings, and there is a property key named `building_height`. Assume the values for this property range between 10 and 200 (in meters). If you want to style buildings between 10 and 30 meters in green, between 30 and 100 meters in orange, and between 100 and 200 meters in red, the example below would be appropriate for this scenario.
 
     ```javascript
-    const building10To30 = {
-		conditions:[
-			{
-				property:"building_height",
-				operator:">=",
-				value:10
-			},
-			{
-				property:"building_height",
-				operator:"<",
-				value:30
-			}
-		],
-		style:{
-			fill:"#00FF00",
-			fillOpacity:1
-		}
-	};
-	
-	const building30To100 = {
-		conditions:[
-			{
-				property:"building_height",
-				operator:">=",
-				value:30
-			},
-			{
-				property:"building_height",
-				operator:"<",
-				value:100
-			}
-		],
-		style:{
-			fill:"#FFA500",
-			fillOpacity:1
-		}
-	};
-	
-	const building100To200 = {
-		conditions:[
-			{
-				property:"building_height",
-				operator:">=",
-				value:100
-			},
-			{
-				property:"building_height",
-				operator:"<",
-				value:200
-			}
-		],
-		style:{
-			fill:"#FF0000",
-			fillOpacity:1
-		}
-	};
-	
-	const svgConverter = new SpatialSVG({
-		fileType: "geojson",
-		data:geojsonData,
-		size: 1000,
-		styleType: "filter",
-		styles: {
-			filters:[
-				building10To30,
-				building30To100,
-				building100To200
-			]
-		}
-	});
+      const building10To30 = {
+      conditions:[
+        {
+          property:"building_height",
+          operator:">=",
+          value:10
+        },
+        {
+          property:"building_height",
+          operator:"<",
+          value:30
+        }
+      ],
+      style:{
+        fill:"#00FF00",
+        fillOpacity:1
+      }
+    };
+    
+    const building30To100 = {
+      conditions:[
+        {
+          property:"building_height",
+          operator:">=",
+          value:30
+        },
+        {
+          property:"building_height",
+          operator:"<",
+          value:100
+        }
+      ],
+      style:{
+        fill:"#FFA500",
+        fillOpacity:1
+      }
+    };
+    
+    const building100To200 = {
+      conditions:[
+        {
+          property:"building_height",
+          operator:">=",
+          value:100
+        },
+        {
+          property:"building_height",
+          operator:"<",
+          value:200
+        }
+      ],
+      style:{
+        fill:"#FF0000",
+        fillOpacity:1
+      }
+    };
+    
+    const svgConverter = new SpatialSVG({
+      fileType: "geojson",
+      data:geojsonData,
+      size: 1000,
+      styleType: "filter",
+      styles: {
+        filters:[
+          building10To30,
+          building30To100,
+          building100To200
+        ]
+      }
+    });
 	```
 
 ### Condition Types
