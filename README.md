@@ -19,6 +19,7 @@ Note : The software offers **30 minutes of free usage**.
 
 ## Basic Usage : Convert GeoJSON file to SVG file
 
+  ```javascript
   import SpatialSVG from "spatial-to-svg";
   import * as  fs  from  "fs";
 	const GeoJSONString = fs.readFileSync("...path/data.geojson", "utf8");å
@@ -39,12 +40,13 @@ Note : The software offers **30 minutes of free usage**.
 		
 	const  svg = svgConverter.getSVG();
 	fs.writeFileSync("...path/sample.svg", svg);
-	
+  ```
 
 
 ## Convert KML File To SVG
 The code example above can be used in a similar way. All you need to do is change the `fileType` value.
 
+  ```javascript
   import SpatialSVG from "spatial-to-svg";
   import * as  fs  from  "fs";
 	const KMLString = fs.readFileSync("...path/data.kml", "utf8");
@@ -65,10 +67,12 @@ The code example above can be used in a similar way. All you need to do is chang
 		
 	const  svg = svgConverter.getSVG();
 	fs.writeFileSync("...path/sample.svg", svg);
+  ```
 	
 ## Convert GPX File To SVG
 The code example above can be used in a similar way. All you need to do is change the `fileType` value. 
 
+  ```javascript
   import SpatialSVG from "spatial-to-svg";
   import * as  fs  from  "fs";
 	const GPXString = fs.readFileSync("...path/data.gpx", "utf8");
@@ -89,6 +93,7 @@ The code example above can be used in a similar way. All you need to do is chang
 		
 	const  svg = svgConverter.getSVG();
 	fs.writeFileSync("...path/sample.svg", svg);
+  ```
 
 ## Configuration Options
 
@@ -177,6 +182,8 @@ You can use these properties in any options
 
 
 #### If StyleType is '*general*'
+    
+    ```javascript
     const defaultStyleOptions = {
 	    stroke: "#FF0000",
 	    strokeWidth: 2,
@@ -189,8 +196,11 @@ You can use these properties in any options
 	    fillOpacity: 0.5,
 	    radius: 10,
     };
+    ```
 
 #### If StyleType is '*geotype*'
+    
+    ```javascript
     const polygonStyle = {
 	    stroke: "#FF0000",
 	    strokeWidth: 2,
@@ -239,9 +249,11 @@ You can use these properties in any options
 		styleType: "geotype",
 		styles: geotypeStyle
 	});
-    
+  ```
 
 #### If StyleType is '*property*'
+
+    ```javascript
     const geojsonData = {...features:[
 	    {...,
 	    properties:{
@@ -267,10 +279,12 @@ You can use these properties in any options
 			}
 		}
 	});
-	
+	```
+
 #### If StyleType is '*filter*'
 If you are using filter-based styling, remember that `filters` should be defined as an array inside the style object. For example, let's say you have a GeoJSON containing polygon buildings, and there is a property key named `building_height`. Assume the values for this property range between 10 and 200 (in meters). If you want to style buildings between 10 and 30 meters in green, between 30 and 100 meters in orange, and between 100 and 200 meters in red, the example below would be appropriate for this scenario.
 
+    ```javascript
     const building10To30 = {
 		conditions:[
 			{
@@ -341,7 +355,8 @@ If you are using filter-based styling, remember that `filters` should be defined
 			]
 		}
 	});
-	
+	```
+
 ### Condition Types
 
 The table below lists all supported operators that can be used in filter-based styling.
