@@ -253,19 +253,19 @@ You can use these properties in any options
 
 #### If StyleType is '*property*'
 
-    ```javascript
-      const geojsonData = {...features:[
-        {...,
-        properties:{
-          "color_stroke":"#00FF00",
-          "line_width":3,
-          "polygon_color":"#FF0000",
-          "opacity":1
-        },geometry:...}
-        ....
-      ]};
-      
-      const svgConverter = new SpatialSVG({
+  ```javascript
+    const geojsonData = {...features:[
+      {...,
+      properties:{
+        "color_stroke":"#00FF00",
+        "line_width":3,
+        "polygon_color":"#FF0000",
+        "opacity":1
+      },geometry:...}
+      ....
+    ]};
+    
+    const svgConverter = new SpatialSVG({
       fileType: "geojson",
       data:geojsonData,
       size: 1000,
@@ -284,8 +284,8 @@ You can use these properties in any options
 #### If StyleType is '*filter*'
 If you are using filter-based styling, remember that `filters` should be defined as an array inside the style object. For example, let's say you have a GeoJSON containing polygon buildings, and there is a property key named `building_height`. Assume the values for this property range between 10 and 200 (in meters). If you want to style buildings between 10 and 30 meters in green, between 30 and 100 meters in orange, and between 100 and 200 meters in red, the example below would be appropriate for this scenario.
 
-    ```javascript
-      const building10To30 = {
+  ```javascript
+    const building10To30 = {
       conditions:[
         {
           property:"building_height",
@@ -303,7 +303,7 @@ If you are using filter-based styling, remember that `filters` should be defined
         fillOpacity:1
       }
     };
-    
+  
     const building30To100 = {
       conditions:[
         {
@@ -322,7 +322,7 @@ If you are using filter-based styling, remember that `filters` should be defined
         fillOpacity:1
       }
     };
-    
+  
     const building100To200 = {
       conditions:[
         {
@@ -341,7 +341,7 @@ If you are using filter-based styling, remember that `filters` should be defined
         fillOpacity:1
       }
     };
-    
+  
     const svgConverter = new SpatialSVG({
       fileType: "geojson",
       data:geojsonData,
