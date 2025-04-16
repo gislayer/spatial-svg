@@ -20,7 +20,7 @@ Note : The software offers **30 minutes of free usage**.
 ## Basic Usage : Convert GeoJSON file to SVG file
 
     import * as  fs  from  "fs";
-	const GeoJSONString = fs.readFileSync("...path/data.geojson", "utf8");
+	const GeoJSONString = fs.readFileSync("...path/data.geojson", "utf8");å
 	 
 	const  svgConverter = new SpatialSVG({
 		fileType: "geojson",
