@@ -1,4 +1,4 @@
-# Spatial-To-SVG
+# spatial-to-sVG
 This library converts your open-source GeoJSON, KML, and GPX files into SVG format. With this module, you can define styling rules to create more visually appealing SVGs. Additionally, the resulting SVG files can be used across various platforms.
 
 ## Install
