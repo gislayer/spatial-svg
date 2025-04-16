@@ -278,7 +278,7 @@ You can use these properties in any options
         }
       }
     });
-	```
+  ```
 
 #### If StyleType is '*filter*'
 If you are using filter-based styling, remember that `filters` should be defined as an array inside the style object. For example, let's say you have a GeoJSON containing polygon buildings, and there is a property key named `building_height`. Assume the values for this property range between 10 and 200 (in meters). If you want to style buildings between 10 and 30 meters in green, between 30 and 100 meters in orange, and between 100 and 200 meters in red, the example below would be appropriate for this scenario.
