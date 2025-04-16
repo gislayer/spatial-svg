@@ -22,7 +22,7 @@ Note : The software offers **30 minutes of free usage**.
   ```javascript
   import SpatialSVG from "spatial-to-svg";
   import * as  fs  from  "fs";
-	const GeoJSONString = fs.readFileSync("...path/data.geojson", "utf8");å
+	const GeoJSONString = fs.readFileSync("...path/data.geojson", "utf8");
 	 
 	const  svgConverter = new SpatialSVG({
 		fileType: "geojson",
@@ -183,7 +183,7 @@ You can use these properties in any options
 
 #### If StyleType is '*general*'
     
-    ```javascript
+  ```javascript
     const defaultStyleOptions = {
 	    stroke: "#FF0000",
 	    strokeWidth: 2,
@@ -196,11 +196,11 @@ You can use these properties in any options
 	    fillOpacity: 0.5,
 	    radius: 10,
     };
-    ```
+  ```
 
 #### If StyleType is '*geotype*'
     
-    ```javascript
+  ```javascript
     const polygonStyle = {
 	    stroke: "#FF0000",
 	    strokeWidth: 2,
@@ -243,12 +243,12 @@ You can use these properties in any options
     };
     
     const svgConverter = new SpatialSVG({
-		fileType: "geojson",
-		data:GeoJSONString,
-		size: 1000,
-		styleType: "geotype",
-		styles: geotypeStyle
-	});
+      fileType: "geojson",
+      data:GeoJSONString,
+      size: 1000,
+      styleType: "geotype",
+      styles: geotypeStyle
+	  });
   ```
 
 #### If StyleType is '*property*'
