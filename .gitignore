@@ -5,4 +5,5 @@ tsconfig.json
 node_modules
 .vscode
 .idea
-src/*
+src/
+jest.config.js
