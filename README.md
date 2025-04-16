@@ -19,7 +19,8 @@ Note : The software offers **30 minutes of free usage**.
 
 ## Basic Usage : Convert GeoJSON file to SVG file
 
-    import * as  fs  from  "fs";
+  import SpatialSVG from "spatial-to-svg";
+  import * as  fs  from  "fs";
 	const GeoJSONString = fs.readFileSync("...path/data.geojson", "utf8");å
 	 
 	const  svgConverter = new SpatialSVG({
@@ -44,7 +45,8 @@ Note : The software offers **30 minutes of free usage**.
 ## Convert KML File To SVG
 The code example above can be used in a similar way. All you need to do is change the `fileType` value.
 
-    import * as  fs  from  "fs";
+  import SpatialSVG from "spatial-to-svg";
+  import * as  fs  from  "fs";
 	const KMLString = fs.readFileSync("...path/data.kml", "utf8");
 	 
 	const  svgConverter = new SpatialSVG({
@@ -67,7 +69,8 @@ The code example above can be used in a similar way. All you need to do is chang
 ## Convert GPX File To SVG
 The code example above can be used in a similar way. All you need to do is change the `fileType` value. 
 
-    import * as  fs  from  "fs";
+  import SpatialSVG from "spatial-to-svg";
+  import * as  fs  from  "fs";
 	const GPXString = fs.readFileSync("...path/data.gpx", "utf8");
 	 
 	const  svgConverter = new SpatialSVG({
